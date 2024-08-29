@@ -34,11 +34,11 @@ const lightingEffect = new LightingEffect({ambientLight, pointLight1, pointLight
 const INITIAL_VIEW_STATE: MapViewState = {
   longitude: -1.415727,
   latitude: 52.232395,
-  zoom: 6.6,
-  minZoom: 5,
-  maxZoom: 15,
+  zoom: 1,
+  minZoom: 0,
+  maxZoom: 20,
   pitch: 40.5,
-  bearing: -27
+  bearing: -0
 };
 
 const MAP_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json';
@@ -89,12 +89,15 @@ export default function App({
       colorRange,
       coverage,
       data,
-      elevationScale: 4,
       // elevationScaleType: 'linear',
       // elevationUpperPercentile: 100,
       // getColorValue: null,
+      elevationRange: [0, 3000],
+      elevationScale: 100,
 
       // getElevationValue: null,
+      getColorWeight: d => d.bna_overall_score,
+
       getElevationWeight: d => d.bna_overall_score,
       extruded: true,
       getPosition: d => d.COORDINATES,
