@@ -137,7 +137,14 @@ export async function renderToDOM(container: HTMLDivElement) {
   const data = (await load(DATA_URL, CSVLoader)).data;
   var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
+      console.log(data[i]["country"]);
+      if(data[i]["country"] != "UNITED STATES"){
+        delete data[i];
+        arrayLength =  arrayLength -1;
+      }else{
         data[i]["COORDINATES"] = [data[i].census_longitude, data[i].census_latitude]
+
+      }
     } 
 
   root.render(<App data={data} />);
